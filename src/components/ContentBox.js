@@ -1,14 +1,16 @@
 import { Grid } from '@material-ui/core';
 import Item from './Item';
 
-const ContentBox = () => {
+const ContentBox = ({ coinList }) => {
 	return (
-		<Grid item xs={12} sm={8}>
-			<Item
-				title='Titulo'
-				description='Description'
-				price='R$10,00'
-				type='unknown'></Item>
+		<Grid item container xs={12} sm={8} spacing={2}>
+			{coinList.map((coin) => {
+				return (
+					<Grid item xs={12}>
+						<Item coin={coin} />
+					</Grid>
+				);
+			})}
 		</Grid>
 	);
 };

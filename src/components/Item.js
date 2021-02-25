@@ -16,8 +16,10 @@ const useStyles = makeStyles({
 	},
 });
 
-export default function Item({ title, description, type, price }) {
+export default function Item({ coin }) {
 	const classes = useStyles();
+	let color = 'green';
+	if (coin.delta_24h < 0) color = 'red';
 
 	return (
 		<Card className={classes.root} variant='outlined'>
@@ -26,16 +28,19 @@ export default function Item({ title, description, type, price }) {
 					className={classes.title}
 					color='textSecondary'
 					gutterBottom>
-					{title}
+					{coin.name}
 				</Typography>
 				<Typography variant='h5' component='h2'>
-					{description}
+					{coin.symbol}
 				</Typography>
 				<Typography className={classes.pos} color='textSecondary'>
-					{type}
+					R$ {coin.price}
 				</Typography>
 				<Typography variant='body2' component='p'>
-					{price}
+					Variação 24h
+				</Typography>
+				<Typography variant='body2' component='p' style={{ color: color }}>
+					{coin.delta_24h} %
 				</Typography>
 			</CardContent>
 		</Card>
